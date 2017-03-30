@@ -5,10 +5,14 @@ end
 
 def create 
   #render plain param [:article].inspect
-  
-  @article = Article.new(article_params)
-  @article.save
-  redirect_to article_path(@article)
+    @article = Article.new(article_params)
+ 
+  if @article.save
+    flash[:notice] = "Article is sucessfully created"
+    redirect_to article_path(@article)
+  else
+    render 'new'
+  end
   
 end
 
