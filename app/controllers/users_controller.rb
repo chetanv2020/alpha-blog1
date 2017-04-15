@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   end
   
   def create
-    @user = User.new(user_param)
+    @user = User.new(user_params)
     
     if @user.save 
       flash[:success] = "Welcome to Alpha Blog #{@user.username}"
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     
-    if @user.update(user_param)
+    if @user.update(user_params)
       flash[:sucess] = "Your account was updated sucessfully"
       redirect_to articles_path
     else
@@ -33,11 +33,17 @@ class UsersController < ApplicationController
   
   end
   
+  def show
+    
+    @user = User.find(params[:id])
+  
+  end
+  
   
   
   private
   
-  def user_param
+  def user_params
     params.require(:user).permit(:username, :email, :password)
   end
   
