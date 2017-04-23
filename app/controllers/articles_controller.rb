@@ -37,8 +37,6 @@ class ArticlesController < ApplicationController
 
     def update
 
-
-
         if @article.update(article_params)
 
             flash[:sucess] = "Article was successfully updated"
